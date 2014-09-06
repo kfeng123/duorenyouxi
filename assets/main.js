@@ -42,7 +42,7 @@ util.makeMenu.prototype={
 		var context=this;
 		socket.emit('newPlayer',this.role.position.x,this.role.position.y,'sheep',1,this.role.id);
 		socket.on('newPlayer',function(x,y,img,frame,id){
-			alert('hh');
+			alert('haha');
 			util.addNewPlayer(x,y,img,frame,id,context.GAME,context.otherPlayers);
 		});
 		//其他玩家的移动
@@ -118,8 +118,10 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 }
 //group:要加入的group
 util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
+	
+	alert(x);
 	var player=util.createPlayers(x,y,img,frame,id,GAME);
-	alert(player.position.x);
+	
 	//其他玩家的行动通过move.x和move.y来确定，所以给他们一个des属性
 	player.move={};
 	player.move.x=x;
