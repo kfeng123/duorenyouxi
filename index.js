@@ -31,9 +31,9 @@ io.on('connection', function(socket){
   socket.on('move',function(x,y,id){
 	//更新玩家状态
 	for(var i=0;i<presentPlayer.length;i++){
-		if(presetPlayer[i].id==id){
-			presetPlayer[i].x=x;
-			presetPlayer[i].y=y;
+		if(presentPlayer[i].id==id){
+			presentPlayer[i].x=x;
+			presentPlayer[i].y=y;
 		}
 	}
 	socket.broadcast.emit('move',x,y,id);
