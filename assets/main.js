@@ -1,5 +1,6 @@
 //工具
 var util={};
+var socket={};
 //构造菜单关卡
 util.makeMenu=function(GAME){
 	this.GAME=GAME;
@@ -37,7 +38,7 @@ util.makeMenu.prototype={
 		this.otherPlayers=this.GAME.game.add.group();
 		
 		//socket编程
-		var socket=io();
+		socket=io();
 		var context=this;
 		socket.emit('newPlayer',this.role.position.x,this.role.position.y,'sheep',1,this.role.id);
 		socket.on('newPlayer',function(x,y,img,frame,id){
