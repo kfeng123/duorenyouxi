@@ -85,7 +85,7 @@ util.makeMenu.prototype={
 				//防止抖动现象
 				if(Math.abs(dx)<=5){
 					player.position.x=player.move.x;
-				}else
+				}else{
 					if(dx>0){
 						player.body.velocity.x=200;
 						
