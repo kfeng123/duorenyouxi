@@ -42,6 +42,7 @@ util.makeMenu.prototype={
 		var context=this;
 		socket.emit('newPlayer',this.role.position.x,this.role.position.y,'sheep',1,this.role.id);
 		socket.on('newPlayer',function(x,y,img,frame,id){
+			alert("haha");
 			util.addNewPlayer(x,y,img,frame,id,context.GAME,context.otherPlayers);
 		});
 		//其他玩家的移动
