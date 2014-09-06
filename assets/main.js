@@ -77,19 +77,31 @@ util.makeMenu.prototype={
 		this.otherPlayers.forEach(function(player){
 			var dx=player.move.x-player.position.x;
 			var dy=player.move.y-player.position.y;
+			
+		
 			player.body.velocity.x=0;
 			player.body.velocity.y=0;
 			if(Math.abs(dx)>Math.abs(dy)){
-				if(dx>0){
-					player.body.velocity.x=200;
-				}else{
-					player.body.velocity.x=-200;
+				//防止抖动现象
+				if(Math.abs(dx)<=5){
+					player.position.x=player.move.x;
+				}else
+					if(dx>0){
+						player.body.velocity.x=200;
+						
+					}else{
+						player.body.velocity.x=-200;
+					}
 				}
 			}else{
-				if(dy>0){
-					player.body.velocity.y=200;
+				if(Math.abs(dy)<=5){
+					player.position.y=player.move.y;
 				}else{
-					player.body.velocity.y=-200;
+					if(dy>0){
+						player.body.velocity.y=200;
+					}else{
+						player.body.velocity.y=-200;
+					}
 				}
 			}
 			if(dx==0&&dy==0){
