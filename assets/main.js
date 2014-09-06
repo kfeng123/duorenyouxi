@@ -83,7 +83,7 @@ util.makeMenu.prototype={
 			player.body.velocity.y=0;
 			if(Math.abs(dx)>Math.abs(dy)){
 				//防止抖动现象
-				if(Math.abs(dx)<=5){
+				if(Math.abs(dx)<=7){
 					player.position.x=player.move.x;
 				}else{
 					if(dx>0){
@@ -94,7 +94,7 @@ util.makeMenu.prototype={
 					}
 				}
 			}else{
-				if(Math.abs(dy)<=5){
+				if(Math.abs(dy)<=7){
 					player.position.y=player.move.y;
 				}else{
 					if(dy>0){
