@@ -6,10 +6,10 @@ util.makeMenu=function(GAME){
 }
 util.makeMenu.prototype={
 	preload:function(){
-		this.GAME.game.load.tilemap('tilemap','assets\jj.json',null,Phaser.Tilemap.TILED_JSON);
-		this.GAME.game.load.image('tiles','assets\free_tileset_version_10.png');
-		this.GAME.game.load.spritesheet('TILES','assets\free_tileset_version_10.png',32,32);
-		this.GAME.game.load.spritesheet('sheep','assets\sheep.png',32,48);
+		this.GAME.game.load.tilemap('tilemap','jj.json',null,Phaser.Tilemap.TILED_JSON);
+		this.GAME.game.load.image('tiles','free_tileset_version_10.png');
+		this.GAME.game.load.spritesheet('TILES','free_tileset_version_10.png',32,32);
+		this.GAME.game.load.spritesheet('sheep','sheep.png',32,48);
 	},
 	create:function(){
 		this.GAME.game.physics.startSystem(Phaser.Physics.ARCADE);
