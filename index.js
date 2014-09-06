@@ -30,12 +30,12 @@ io.on('connection', function(socket){
   });
   socket.on('move',function(x,y,id){
 	//更新玩家状态
-	prensentPlayer.forEach(function(PPP){
-		if(PPP.id==id){
-			PPP.x=x;
-			PPP.y=y;
+	for(var i=0;i<prensentPlayer.length;i++){
+		if(presentPlayer[i].id==id){
+			presentPlayer[i].x=x;
+			presentPlayer[i].y=y;
 		}
-	}); 
+	}
 	socket.broadcast.emit('move',x,y,id);
   });
 });
