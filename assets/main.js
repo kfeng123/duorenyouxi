@@ -77,6 +77,8 @@ util.makeMenu.prototype={
 		this.otherPlayers.forEach(function(player){
 			var dx=player.move.x-player.position.x;
 			var dy=player.move.y-player.position.y;
+			player.body.velocity.x=0;
+			player.body.velocity.y=0;
 			if(Math.abs(dx)>Math.abs(dy)){
 				if(dx>0){
 					player.body.velocity.x=200;
