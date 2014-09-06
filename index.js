@@ -18,6 +18,9 @@ io.on('connection', function(socket){
     //io.emit('chat message', msg);
 	socket.broadcast.emit('newPlayer',x,y,img,frame,id);
   });
+  socket.on('move',function(x,y,id){
+	socket.broadcast.emit('move',x,y,id);
+  });
 });
 
 
