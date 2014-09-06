@@ -1,6 +1,5 @@
 var express = require('express');
-var app=express();
-app.use(express.static('asset'));
+var app=express.createServer();
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
