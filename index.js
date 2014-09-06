@@ -29,6 +29,13 @@ io.on('connection', function(socket){
 	socket.broadcast.emit('newPlayer',x,y,img,frame,id);
   });
   socket.on('move',function(x,y,id){
+	//更新玩家状态
+	prensentPlayer.forEach(function(PPP){
+		if(PPP.id==id){
+			PPP.x=x;
+			PPP.y=y;
+		}
+	});
 	socket.broadcast.emit('move',x,y,id);
   });
 });
