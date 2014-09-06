@@ -48,8 +48,8 @@ util.makeMenu.prototype={
 		socket.on('move',function(x,y,id){
 			context.otherPlayers.forEach(function(player){
 				if(player.id==id){
-				play.move.x=x;
-				play.move.y=y;
+				player.move.x=x;
+				player.move.y=y;
 				}
 			});
 		});
@@ -75,7 +75,7 @@ util.makeMenu.prototype={
 		}
 		//其他玩家的移动
 		this.otherPlayers.forEach(function(player){
-			var dx=player.move.x-player.positon.x;
+			var dx=player.move.x-player.position.x;
 			var dy=player.move.y-player.position.y;
 			if(Math.abs(dx)>Math.abs(dy)){
 				if(dx>0){
