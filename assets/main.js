@@ -118,7 +118,7 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 //group:要加入的group
 util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 	alert("haha");
-	var player=util.createPlayers(x,y,img,frame,id,GAME);
+	var player=util.createPlayer(x,y,img,frame,id,GAME);
 	alert(player.position.x);
 	//其他玩家的行动通过move.x和move.y来确定，所以给他们一个des属性
 	player.move={};
