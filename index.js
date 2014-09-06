@@ -1,6 +1,10 @@
-var app = require('express')();
+var express = require('express');
+var app=express();
+app.use(express.static('asset'));
+
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
 
 app.get('/', function(req, res){
   res.sendfile('index.html');
