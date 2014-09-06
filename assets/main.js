@@ -121,7 +121,7 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 	//其他玩家的行动通过move.x和move.y来确定，所以给他们一个des属性
 	player.move={};
 	player.move.x=x;
-	palyer.move.y=y;
+	player.move.y=y;
 	group.add(player);
 	
 	return(player);
