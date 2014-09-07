@@ -72,7 +72,7 @@ util.makeGame.prototype={
 		//创建主角
 		this.role=util.createPlayer(220,200,'sheep',1,Math.floor(Math.random()*1000+1),this.GAME);
 		this.role.body.collidWorldBounds=true;
-		this.role.scale={x:0.5,y:0.5};
+		
 		this.GAME.game.camera.follow(this.role);
 		this.cursors=this.GAME.game.input.keyboard.createCursorKeys();
 		
@@ -195,6 +195,7 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	role.animations.add('down',[0,1,2],3,true);
 	GAME.game.physics.enable(role,Phaser.Physics.ARCADE);
 	role.id=id;
+	role.scale={x:0.6,y:0.6};
 	return role;
 }
 //group:要加入的group
