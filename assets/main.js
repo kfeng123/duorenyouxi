@@ -170,10 +170,10 @@ util.makeGame.prototype={
 //创建玩家，参数：x,y:坐标,img:图片，frame:初始的帧，id:玩家id,GAME：整个游戏对象
 util.createPlayer=function(x,y,img,frame,id,GAME){
 	var role=GAME.game.add.sprite(x,y,img,frame);
-	role.animations.add('right',[6,7,8],200,true);
-	role.animations.add('left',[3,4,5],200,true);
-	role.animations.add('up',[9,10,11],200,true);
-	role.animations.add('down',[0,1,2],200,true);
+	role.animations.add('right',[6,7,8],3,true);
+	role.animations.add('left',[3,4,5],3,true);
+	role.animations.add('up',[9,10,11],3,true);
+	role.animations.add('down',[0,1,2],3,true);
 	GAME.game.physics.enable(role,Phaser.Physics.ARCADE);
 	role.id=id;
 	return role;
