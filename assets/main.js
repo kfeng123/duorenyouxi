@@ -219,7 +219,7 @@ util.createBianfu=function(state_game){
 	state_game.bianfu=state_game.GAME.game.add.group();
 	var bianfu=state_game.GAME.game.add.sprite(300,50,'kulou',0);
 	bianfu.animations.add('move',[0,1,2,3],4,true);
-	bianfu.animations.play('left');
+	bianfu.animations.play('move');
 	state_game.bianfu.add(bianfu);
 	
 }
