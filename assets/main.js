@@ -4,13 +4,52 @@ var socket={};
 //构造菜单关卡
 util.makeMenu=function(GAME){
 	this.GAME=GAME;
+	this.text=null;
+	this.ifComplete=false;
 }
 util.makeMenu.prototype={
 	preload:function(){
+		this.text=this.GAME.game.add.text(100,200,'loading',{fill:'#54613C'});
+	},
+	create:function(){
 		this.GAME.game.load.tilemap('tilemap','jj.json',null,Phaser.Tilemap.TILED_JSON);
 		this.GAME.game.load.image('tiles','free_tileset_version_10.png');
 		this.GAME.game.load.spritesheet('TILES','free_tileset_version_10.png',32,32);
 		this.GAME.game.load.spritesheet('sheep','sheep.png',32,48);
+		
+		this.GAME.game.load.onLoadStart.add(function(){
+			this.text.setText('loading...');
+		},this);
+		this.GAME.game.load.onFileComplete.add(function(progress,cacheKey,success,totalLoaded,totalFiles){
+			this.text.setText("completes"+progress+"% - "+totalLoaded+" / "+totalFiles);
+		},this);
+		this.GAME.game.load.onLoadComplete.add(function(){
+			this.text.setText("complete");
+			this.ifComplete=true;
+		},this);
+		this.GAME.game.load.start();
+	},
+	update:function(){
+		if(this.ifComplete){
+			this.GAME.game.state.start('game');
+		}
+	}
+
+}
+
+
+
+util.makeGame=function(GAME){
+	this.GAME=GAME;
+}
+util.makeGame.prototype={
+	preload:function(){
+		
+		//读取部分放到前面的state里了
+		/* this.GAME.game.load.tilemap('tilemap','jj.json',null,Phaser.Tilemap.TILED_JSON);
+		this.GAME.game.load.image('tiles','free_tileset_version_10.png');
+		this.GAME.game.load.spritesheet('TILES','free_tileset_version_10.png',32,32);
+		this.GAME.game.load.spritesheet('sheep','sheep.png',32,48); */
 	},
 	create:function(){
 		this.GAME.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -118,7 +157,7 @@ util.makeMenu.prototype={
 		
 	},
 	render:function(){
-		this.GAME.game.debug.body(this.role);
+		//this.GAME.game.debug.body(this.role);
 		
 	}
 }
@@ -146,7 +185,7 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 var start=function(){
 	this.States={};
 	this.States.menu=new util.makeMenu(this);
-	//this.States.game=;
+	this.States.game=new util.makeGmae(this);
 	//this.States.end=;
 	this.game=new Phaser.Game(800, 600, Phaser.CANVAS, 'game');
 }
@@ -158,5 +197,6 @@ var start=function(){
 
 var MYGAME=new start();
 MYGAME.game.state.add('menu',MYGAME.States.menu);
+MYGAME.game.state.add('game',MYGAME.States.game);
 MYGAME.game.state.start('menu');
 
