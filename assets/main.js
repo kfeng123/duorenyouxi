@@ -16,6 +16,7 @@ util.makeMenu.prototype={
 		this.GAME.game.load.image('tiles','free_tileset_version_10.png');
 		this.GAME.game.load.spritesheet('TILES','free_tileset_version_10.png',32,32);
 		this.GAME.game.load.spritesheet('sheep','sheep.png',32,48);
+		this.GAME.game.load.spritesheet('bianfu','bianfu.png',225,200);
 		
 		this.GAME.game.load.onLoadStart.add(function(){
 			this.text.setText('loading...');
@@ -71,7 +72,11 @@ util.makeGame.prototype={
 		
 		//创建主角
 		this.role=util.createPlayer(220,200,'sheep',1,Math.floor(Math.random()*1000+1),this.GAME);
-		this.role.body.collidWorldBounds=true;
+		this.role.body.collideWorldBounds=true;
+		
+		//创建蝙蝠敌人
+		util.createBianfu(this);
+		
 		
 		this.GAME.game.camera.follow(this.role);
 		this.cursors=this.GAME.game.input.keyboard.createCursorKeys();
@@ -208,6 +213,15 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 	group.add(player);
 	
 	return(player);
+}
+
+util.createBianfu=function(state_game){
+	state_game.bianfu=state_game.GAME.game.add.group();
+	var bianfu=state_game.GAME.game.add.sprite(400,100,'bianfu',1,true);
+	bianfu.animations.add('left',[0,1,2,3],4,true);
+	bianfu.animations.play('left');
+	state_game.bianfu.add(bianfu);
+	
 }
 
 
