@@ -75,7 +75,7 @@ util.makeGame.prototype={
 		this.role.body.collideWorldBounds=true;
 		
 		//创建蝙蝠敌人
-		util.createBianfu(this);
+		//util.createBianfu(this);
 		
 		
 		this.GAME.game.camera.follow(this.role);
