@@ -217,7 +217,7 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 
 util.createBianfu=function(state_game){
 	state_game.bianfu=state_game.GAME.game.add.group();
-	var bianfu=state_game.GAME.game.add.sprite(400,100,'bianfu',1,true);
+	var bianfu=state_game.GAME.game.add.sprite(400,100,'bianfu',0);
 	//bianfu.animations.add('left',[0,1,2,3],4,true);
 	//bianfu.animations.play('left');
 	//state_game.bianfu.add(bianfu);
