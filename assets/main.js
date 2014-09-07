@@ -71,6 +71,8 @@ util.makeGame.prototype={
 		
 		//创建主角
 		this.role=util.createPlayer(220,200,'sheep',1,Math.floor(Math.random()*1000+1),this.GAME);
+		this.role.body.collidWorldBounds=true;
+		this.role.scale={x:0.5,y:0.5};
 		this.GAME.game.camera.follow(this.role);
 		this.cursors=this.GAME.game.input.keyboard.createCursorKeys();
 		
@@ -138,6 +140,14 @@ util.makeGame.prototype={
 						player.body.velocity.x=-200;
 					}
 				}
+				//动画
+				if(dx>0){
+					player.animations.play('right');
+				}else{
+					player.animations.play('left');
+				}
+				
+				
 			}else{
 				if(Math.abs(dy)<=7){
 					player.position.y=player.move.y;
@@ -148,10 +158,19 @@ util.makeGame.prototype={
 						player.body.velocity.y=-200;
 					}
 				}
+				//动画
+				if(dy>0){
+					player.animations.play('down');
+				}else{
+					player.animations.play('up');
+				}
+				
 			}
 			if(dx==0&&dy==0){
 				player.body.velocity.x=0;
 				player.body.velocity.y=0;
+				//动画
+				player.animations.stop();
 			}
 		});
 		
