@@ -52,8 +52,9 @@ util.makeGame.prototype={
 		this.GAME.game.load.spritesheet('sheep','sheep.png',32,48); */
 	},
 	create:function(){
-		this.GAME.game.physics.startSystem(Phaser.Physics.ARCADE);
+		//添加动画
 	
+		this.GAME.game.physics.startSystem(Phaser.Physics.ARCADE);
 		this.map=this.GAME.game.add.tilemap('tilemap');
 		this.map.addTilesetImage('free_tileset_version_10','tiles');
 		this.layer=this.map.createLayer('Tile Layer 1');
@@ -185,7 +186,7 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 var start=function(){
 	this.States={};
 	this.States.menu=new util.makeMenu(this);
-	this.States.game=new util.makeGmae(this);
+	this.States.game=new util.makeGame(this);
 	//this.States.end=;
 	this.game=new Phaser.Game(800, 600, Phaser.CANVAS, 'game');
 }
