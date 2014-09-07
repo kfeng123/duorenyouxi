@@ -116,6 +116,7 @@ util.makeGame.prototype={
 		}else{
 			this.role.body.velocity.x=0;
 			this.role.body.velocity.y=0;
+			this.role.animations.stop();
 		}
 		//其他玩家的移动
 		this.otherPlayers.forEach(function(player){
@@ -169,10 +170,10 @@ util.makeGame.prototype={
 //创建玩家，参数：x,y:坐标,img:图片，frame:初始的帧，id:玩家id,GAME：整个游戏对象
 util.createPlayer=function(x,y,img,frame,id,GAME){
 	var role=GAME.game.add.sprite(x,y,img,frame);
-	role.animations.add('right',[7,8,9],20,true);
-	role.animations.add('lift',[4,5,6],20,true);
-	role.animations.add('up',[10,11,12],20,true);
-	role.animations.add('down',[1,2,3],20,true);
+	role.animations.add('right',[7,8,9],40,true);
+	role.animations.add('left',[4,5,6],40,true);
+	role.animations.add('up',[10,11,12],40,true);
+	role.animations.add('down',[1,2,3],40,true);
 	GAME.game.physics.enable(role,Phaser.Physics.ARCADE);
 	role.id=id;
 	return role;
