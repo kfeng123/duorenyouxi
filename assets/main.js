@@ -134,7 +134,7 @@ util.makeGame.prototype={
 		//使用技能
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
 			this.role.longPaoXiao.reset(this.role.x,this.role.y);
-			this.role.longPaoXiao.play('do',8,false,true);
+			//this.role.longPaoXiao.play('do',8,false,true);
 		
 		}
 		
