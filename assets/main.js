@@ -107,6 +107,8 @@ util.makeGame.prototype={
 	},
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
+		this.GAME.game.physics.arcade.collide(this.role.longPaoXiao,this.bianfu,function(a,b){b.kill();}, null, this);
+		this.GAME.game.physics.arcade.collide(this.role,this.bianfu,function(a,b){a.kill();},null,this);
 		if(this.cursors.up.isDown){
 			this.role.body.velocity.y=-200;
 			this.role.body.velocity.x=0;
@@ -219,6 +221,7 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	
 	//技能龙咆哮
 	role.longPaoXiao=GAME.game.add.sprite(x,y,'longpaoxiao',15);
+	GAME.game.physics.enable(role.longPaoXiao,Phaser.Physics.ARCADE);
 	role.longPaoXiao.kill();
 	role.longPaoXiao.animations.add('do',[15,16,17,18,19,20,21,22,23,24,25,26,27],8,false);
 	role.longPaoXiao.scale={x:0.5,y:0.5};
@@ -241,6 +244,8 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 
 util.createBianfu=function(state_game){
 	state_game.bianfu=state_game.GAME.game.add.group();
+	state_game.bianfu.enableBody=true;
+	state_game.bianfu.physicsBodyType=Phaser.Physics.ARCADE;
 	var bianfu=state_game.GAME.game.add.sprite(300,50,'kulou',0);
 	bianfu.animations.add('move',[0,1,2,3],4,true);
 	bianfu.animations.play('move');
