@@ -145,7 +145,7 @@ util.makeGame.prototype={
 				if(Math.abs(dx)>Math.abs(dy)){
 					//防止抖动现象
 					if(Math.abs(dx)<=7){
-						alert('haha');
+						
 						player.position.x=player.move.x;
 						
 					}else{

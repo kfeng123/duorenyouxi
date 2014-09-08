@@ -20,7 +20,7 @@ io.on('connection', function(socket){
 	//io.emit('chat message', msg);
 	//给新玩家发送已有玩家信息
 	presentPlayer.forEach(function(PPP){
-		socket.emit('newPlayer',PPP);
+		socket.emit('newPlayer',JSON.stringify(PPP));
 	});
 	//记录新玩家信息
 	presentPlayer.push(JSON.parse(jstring));
