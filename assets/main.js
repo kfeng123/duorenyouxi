@@ -17,6 +17,7 @@ util.makeMenu.prototype={
 		this.GAME.game.load.spritesheet('TILES','free_tileset_version_10.png',32,32);
 		this.GAME.game.load.spritesheet('sheep','sheep.png',32,48);
 		this.GAME.game.load.spritesheet('kulou','kulou.png',32,32);
+		this.GAME.game.load.spritesheet('longpaoxiao','longpaoxiao.png',192,192);
 		
 		this.GAME.game.load.onLoadStart.add(function(){
 			this.text.setText('loading...');
@@ -127,6 +128,14 @@ util.makeGame.prototype={
 			this.role.body.velocity.y=0;
 			this.role.animations.stop();
 		}
+		
+		//使用技能
+		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+			this.role.longPaoXiao.reset(this.role.x,this.role.y);
+			this.role.longPaoXiao.play('do',8,false,true);
+		
+		}
+		
 		//其他玩家的移动
 		this.otherPlayers.forEach(function(player){
 			var dx=player.move.x-player.position.x;
@@ -205,6 +214,13 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	GAME.game.physics.enable(role,Phaser.Physics.ARCADE);
 	role.id=id;
 	role.scale={x:0.6,y:0.6};
+	
+	//技能龙咆哮
+	role.longPaoXiao=GAME.game.add.sprite(x,y,'longpaoxiao',15);
+	role.longPaoXiao.kill();
+	role.longPaoXiao.animations.add('do',[15,16,17,18,19,20,21,22,23,24,25,26,27],8,false);
+	
+	
 	return role;
 }
 //group:要加入的group
