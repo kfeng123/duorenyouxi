@@ -147,7 +147,7 @@ util.makeGame.prototype={
 					if(Math.abs(dx)<=7){
 						
 						player.position.x=player.move.x;
-						alert(player.position.x+' '+player.position.y+' '+player.move.x+' '+player.move.y);
+						alert(dx);
 						player.animations.stop();
 					}else{
 						if(dx>0){
