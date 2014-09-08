@@ -148,7 +148,7 @@ util.makeGame.prototype={
 						
 						player.position.x=player.move.x;
 						alert(player.position.x+' '+player.position.y+' '+player.move.x+' '+player.move.y);
-						player.animation.stop();
+						player.animations.stop();
 					}else{
 						if(dx>0){
 							player.body.velocity.x=200;
