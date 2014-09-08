@@ -137,11 +137,10 @@ util.makeGame.prototype={
 			player.body.velocity.y=0;
 			
 			if(dx==0&&dy==0){
-				alert("haha");
 				player.body.velocity.x=0;
 				player.body.velocity.y=0;
 				//动画
-				player.animations.stop();
+				//player.animations.stop();
 			}else{
 				if(Math.abs(dx)>Math.abs(dy)){
 					//防止抖动现象
@@ -149,7 +148,7 @@ util.makeGame.prototype={
 						
 						player.position.x=player.move.x;
 						alert(player.position.x+' '+player.position.y+' '+player.move.x+' '+player.move.y);
-						
+						player.animation.stop();
 					}else{
 						if(dx>0){
 							player.body.velocity.x=200;
