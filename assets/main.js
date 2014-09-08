@@ -137,6 +137,7 @@ util.makeGame.prototype={
 			player.body.velocity.y=0;
 			
 			if(dx==0&&dy==0){
+				alert("haha");
 				player.body.velocity.x=0;
 				player.body.velocity.y=0;
 				//动画
