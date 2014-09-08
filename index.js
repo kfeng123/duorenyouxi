@@ -3,7 +3,7 @@ var app=express();
 app.use(express.static(__dirname + '/assets'));
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-//目前在线玩家，记录的是jsonString
+//目前在线玩家
 var presentPlayer=[];
 
 app.get('/', function(req, res){
@@ -23,7 +23,7 @@ io.on('connection', function(socket){
 		socket.emit('newPlayer',PPP);
 	});
 	//记录新玩家信息
-	presentPlayer.push(jstring);
+	presentPlayer.push(JSON.parse(jstring));
 	
 	//向其它玩家发送新玩家信息
 	socket.broadcast.emit('newPlayer',jstring);
