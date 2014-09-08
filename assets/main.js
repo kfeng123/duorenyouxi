@@ -131,6 +131,7 @@ util.makeGame.prototype={
 			this.role.animations.stop();
 		}
 		
+		if(this.role.longPaoXiao.exist)alert(this.role.longPaoXiao.x);
 		//使用技能
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
 			this.role.longPaoXiao.reset(this.role.x,this.role.y);
