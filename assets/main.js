@@ -75,7 +75,7 @@ util.makeGame.prototype={
 		this.role=util.createPlayer(220,200,'sheep',1,Math.floor(Math.random()*1000+1),this.GAME);
 		this.role.body.collideWorldBounds=true;
 		
-		//创建蝙蝠敌人
+		//创建蝙蝠敌人group
 		util.createBianfu(this);
 		
 		
@@ -139,60 +139,7 @@ util.makeGame.prototype={
 		}
 		
 		//其他玩家的移动
-		this.otherPlayers.forEach(function(player){
-			var dx=player.move.x-player.position.x;
-			var dy=player.move.y-player.position.y;
-			
-		
-			player.body.velocity.x=0;
-			player.body.velocity.y=0;
-			
-			if(Math.abs(dx)<=7&&Math.abs(dy)<=7){
-
-				//防止抖动现象
-					if(Math.abs(dx)<=7){
-						player.position.x=player.move.x;
-					}else if(Math.abs(dy)<=7){
-						player.position.y=player.move.y;
-					}
-				//动画
-				player.animations.stop();
-			}else{
-				if(Math.abs(dx)>Math.abs(dy)){
-					
-					if(dx>0){
-						player.body.velocity.x=200;
-						
-					}else{
-						player.body.velocity.x=-200;
-					}
-					
-					//动画
-					if(dx>0){
-						player.animations.play('right');
-					}else{
-						player.animations.play('left');
-					}
-					
-					
-				}else{
-					
-					if(dy>0){
-						player.body.velocity.y=200;
-					}else{
-						player.body.velocity.y=-200;
-					}
-				
-					//动画
-					if(dy>0){
-						player.animations.play('down');
-					}else{
-						player.animations.play('up');
-					}
-					
-				}
-			}
-		});
+		this.otherPlayers.forEach(util.otherPlayerMove);
 		
 		
 		
@@ -251,6 +198,61 @@ util.createBianfu=function(state_game){
 	bianfu.animations.play('move');
 	state_game.bianfu.add(bianfu);
 	
+}
+//更新其他玩家的移动
+util.otherPlayerMove=function(player){
+	var dx=player.move.x-player.position.x;
+	var dy=player.move.y-player.position.y;
+	
+
+	player.body.velocity.x=0;
+	player.body.velocity.y=0;
+	
+	if(Math.abs(dx)<=7&&Math.abs(dy)<=7){
+
+		//防止抖动现象
+			if(Math.abs(dx)<=7){
+				player.position.x=player.move.x;
+			}else if(Math.abs(dy)<=7){
+				player.position.y=player.move.y;
+			}
+		//动画
+		player.animations.stop();
+	}else{
+		if(Math.abs(dx)>Math.abs(dy)){
+			
+			if(dx>0){
+				player.body.velocity.x=200;
+				
+			}else{
+				player.body.velocity.x=-200;
+			}
+			
+			//动画
+			if(dx>0){
+				player.animations.play('right');
+			}else{
+				player.animations.play('left');
+			}
+			
+			
+		}else{
+			
+			if(dy>0){
+				player.body.velocity.y=200;
+			}else{
+				player.body.velocity.y=-200;
+			}
+		
+			//动画
+			if(dy>0){
+				player.animations.play('down');
+			}else{
+				player.animations.play('up');
+			}
+			
+		}
+	}
 }
 
 
