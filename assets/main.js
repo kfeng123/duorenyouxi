@@ -134,7 +134,7 @@ util.makeGame.prototype={
 		//使用技能
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
 			this.role.longPaoXiao.reset(this.role.x,this.role.y);
-			//this.role.longPaoXiao.play('do',8,false,true);
+			this.role.longPaoXiao.play('do',8,false,true);
 		
 		}
 		
@@ -177,6 +177,7 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	role.longPaoXiao.scale={x:0.5,y:0.5};
 	role.longPaoXiao.anchor={x:0.5,y:0.5};
 	GAME.game.physics.enable(role.longPaoXiao,Phaser.Physics.ARCADE);
+	role.longPaoXiao.body.setSize(100,100);
 	role.longPaoXiao.kill();
 	role.longPaoXiao.animations.add('do',[15,16,17,18,19,20,21,22,23,24,25,26,27],8,false);
 
