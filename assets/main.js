@@ -154,8 +154,9 @@ util.makeGame.prototype={
 		
 	},
 	render:function(){
-		//this.GAME.game.debug.body(this.role);
+		this.GAME.game.debug.body(this.role);
 		this.GAME.game.debug.body(this.role.longPaoXiao);
+		
 	}
 }
 //创建玩家，参数：x,y:坐标,img:图片，frame:初始的帧，id:玩家id,GAME：整个游戏对象
