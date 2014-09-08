@@ -138,6 +138,11 @@ util.makeGame.prototype={
 		
 		}
 		
+		//增加敌人
+		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.Z)){
+			util.addEnemy(this);
+		}
+		
 		//其他玩家的移动
 		this.otherPlayers.forEach(util.otherPlayerMove);
 		
@@ -189,16 +194,28 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 	return(player);
 }
 
+
+//创建敌人group
 util.createBianfu=function(state_game){
 	state_game.bianfu=state_game.GAME.game.add.group();
 	state_game.bianfu.enableBody=true;
 	state_game.bianfu.physicsBodyType=Phaser.Physics.ARCADE;
-	var bianfu=state_game.GAME.game.add.sprite(300,50,'kulou',0);
+	
+	//最多3个敌人
+	state_game.bianfu.num=3;
+	for(var i=0;i<3;i++){
+		util.addEnemy(state_game);
+	}
+}
+//增加敌人
+util.addEnemy=function(state_game){
+	var bianfu=state_game.GAME.game.add.sprite(state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY,'kulou',0);
 	bianfu.animations.add('move',[0,1,2,3],4,true);
 	bianfu.animations.play('move');
 	state_game.bianfu.add(bianfu);
-	
 }
+
+
 //更新其他玩家的移动
 util.otherPlayerMove=function(player){
 	var dx=player.move.x-player.position.x;
@@ -254,6 +271,9 @@ util.otherPlayerMove=function(player){
 		}
 	}
 }
+
+
+
 
 
 //游戏对象的构造函数
