@@ -87,16 +87,18 @@ util.makeGame.prototype={
 		//socket编程
 		socket=io();
 		var context=this;
-		socket.emit('newPlayer',this.role.position.x,this.role.position.y,'sheep',1,this.role.id);
-		socket.on('newPlayer',function(x,y,img,frame,id){
-			util.addNewPlayer(x,y,img,frame,id,context.GAME,context.otherPlayers);
+		socket.emit('newPlayer',JSON.stringify({x:this.role.position.x,y:this.role.position.y,img:"sheep",frame:1,id:this.role.id}));
+		socket.on('newPlayer',function(jstring){
+			var PPP=JSON.parse(jstring);
+			util.addNewPlayer(PPP.x,PPP.y,PPP.img,PPP.frame,PPP.id,context.GAME,context.otherPlayers);
 		});
 		//其他玩家的移动
-		socket.on('move',function(x,y,id){
+		socket.on('move',function(jstring){
+			var P=JSON.parse(jstring);
 			context.otherPlayers.forEach(function(player){
-				if(player.id==id){
-				player.move.x=x;
-				player.move.y=y;
+				if(player.id==P.id){
+				player.move.x=P.x;
+				player.move.y=P.y;
 				}
 			});
 		});
@@ -183,7 +185,7 @@ util.makeGame.prototype={
 		
 		var context=this;
 		//socket通信
-		socket.emit('move',this.role.position.x,this.role.position.y,this.role.id);
+		socket.emit('move',JSON.stringify({x:this.role.position.x,y:this.role.position.y,id:this.role.id}));
 		
 	},
 	render:function(){

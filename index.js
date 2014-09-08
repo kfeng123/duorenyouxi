@@ -3,7 +3,7 @@ var app=express();
 app.use(express.static(__dirname + '/assets'));
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
+//目前在线玩家，记录的是jsonString
 var presentPlayer=[];
 
 app.get('/', function(req, res){
@@ -15,28 +15,29 @@ io.on('connection', function(socket){
 });
 
 io.on('connection', function(socket){
-  socket.on('newPlayer', function(x,y,img,frame,id){
-    //io.emit('chat message', msg);
-	var player={x:x,y:y,img:img,frame:frame,id:id};
+  socket.on('newPlayer', function(jstring){
+    //var player=JSON.parse(jstring);
+	//io.emit('chat message', msg);
 	//给新玩家发送已有玩家信息
 	presentPlayer.forEach(function(PPP){
-		socket.emit('newPlayer',PPP.x,PPP.y,PPP.img,PPP.frame,PPP.id);
+		socket.emit('newPlayer',PPP);
 	});
 	//记录新玩家信息
-	presentPlayer.push(player);
+	presentPlayer.push(jstring);
 	
 	//向其它玩家发送新玩家信息
-	socket.broadcast.emit('newPlayer',x,y,img,frame,id);
+	socket.broadcast.emit('newPlayer',jstring);
   });
-  socket.on('move',function(x,y,id){
+  socket.on('move',function(jstring){
+	var P=JSON.parse(jstring);
 	//更新玩家状态
 	for(var i=0;i<presentPlayer.length;i++){
-		if(presentPlayer[i].id==id){
-			presentPlayer[i].x=x;
-			presentPlayer[i].y=y;
+		if(presentPlayer[i].id==P.id){
+			presentPlayer[i].x=P.x;
+			presentPlayer[i].y=P.y;
 		}
 	}
-	socket.broadcast.emit('move',x,y,id);
+	socket.broadcast.emit('move',jstring);
   });
 });
 
