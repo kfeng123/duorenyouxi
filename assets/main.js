@@ -107,8 +107,8 @@ util.makeGame.prototype={
 	},
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
-		this.GAME.game.physics.arcade.collide(this.role.longPaoXiao,this.bianfu,function(a,b){b.kill();}, null, this);
-		this.GAME.game.physics.arcade.collide(this.role,this.bianfu,function(a,b){a.kill();},null,this);
+		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.bianfu,function(a,b){b.kill();}, null, this);
+		this.GAME.game.physics.arcade.overlap(this.role,this.bianfu,function(a,b){a.kill();},null,this);
 		if(this.cursors.up.isDown){
 			this.role.body.velocity.y=-200;
 			this.role.body.velocity.x=0;
