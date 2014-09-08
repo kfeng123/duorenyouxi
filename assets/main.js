@@ -221,9 +221,9 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	role.longPaoXiao=GAME.game.add.sprite(x,y,'longpaoxiao',15);
 	role.longPaoXiao.kill();
 	role.longPaoXiao.animations.add('do',[15,16,17,18,19,20,21,22,23,24,25,26,27],8,false);
-	role.scale={x:0.5,y:0.5};
-	role.anchor.x=0.5;
-	role.anchor.y=0.5;
+	role.longPaoXiao.scale={x:0.5,y:0.5};
+	role.longPaoXiao.anchor.x=0.5;
+	role.longPaoXiao.anchor.y=0.5;
 	
 	return role;
 }
