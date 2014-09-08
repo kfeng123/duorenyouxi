@@ -136,7 +136,7 @@ util.makeGame.prototype={
 			player.body.velocity.x=0;
 			player.body.velocity.y=0;
 			
-			if(Math.abs(dx)<=7||Math.abs(dy)<=7){
+			if(Math.abs(dx)<=7&&Math.abs(dy)<=7){
 
 				//防止抖动现象
 					if(Math.abs(dx)<=7){
