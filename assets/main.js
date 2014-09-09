@@ -103,7 +103,7 @@ util.makeGame.prototype={
 			var P=JSON.parse(jstring);
 			context.otherPlayers.forEach(function(player){
 				if(player.id==P.id){
-					
+					aler(P.x+' '+P.y);
 					util.useSkill(context,player.longPaoXiao,P.x,P.y);
 				
 				}
