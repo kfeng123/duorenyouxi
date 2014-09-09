@@ -103,8 +103,7 @@ util.makeGame.prototype={
 			var P=JSON.parse(jstring);
 			context.otherPlayers.forEach(function(player){
 				if(player.id==P.id){
-					
-					util.useSkill(context,player.longPaoXiao,P.x,P.y);
+					player.toGo={context:context,sprite:player.longPaoXiao,x:P.x,y:P.y};
 				
 				}
 			});
@@ -145,12 +144,14 @@ util.makeGame.prototype={
 			}
 			//x,y技能施放的地点
 			util.useSkill(this,this.role.longPaoXiao,this.role.x,this.role.y);
-			
-			
-			
 		}
-		
-		
+		//其他玩家施放技能
+		this.otherPlayers.forEach(function(player){
+			if(player.toGo!=null){
+				util.useSkill(player.toGo.context,player.toGo.sprite,player.toGo.x,player.toGo.y);
+				palyer.toGo=null;
+			}
+		});
 		/* if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
 			
 			//这里必须是body.reset不能直接是reset，不然会有飞屏bug
@@ -194,6 +195,8 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	role.scale={x:0.6,y:0.6};
 	role.anchor.x=0.5;
 	role.anchor.y=0.5;
+	//是否要在下次update时施放技能
+	role.toGo=null;
 	
 	//技能龙咆哮
 	role.longPaoXiao=GAME.game.add.sprite(x,y,'longpaoxiao',15);
@@ -203,7 +206,7 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	role.longPaoXiao.body.setSize(130,130);
 	role.longPaoXiao.kill();
 	role.longPaoXiao.animations.add('do',[15,16,17,18,19,20,21,22,23,24,25,26,27],8,false);
-
+	
 	
 	return role;
 }
@@ -247,7 +250,6 @@ util.useSkill=function(context,sprite,x,y){
 	sprite.body.reset(x,y);
 	sprite.position={x:x,y:y};
 	sprite.exists=true;
-	alert(sprite.position.x+ ' '+sprite.position.y);
 	sprite.play('do',8,false,true);
 }
 
