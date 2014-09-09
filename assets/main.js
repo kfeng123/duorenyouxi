@@ -103,7 +103,7 @@ util.makeGame.prototype={
 			var P=JSON.parse(jstring);
 			context.otherPlayers.forEach(function(player){
 				if(player.id==P.id){
-					aler(P.x+' '+P.y);
+					
 					util.useSkill(context,player.longPaoXiao,P.x,P.y);
 				
 				}
@@ -141,7 +141,7 @@ util.makeGame.prototype={
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
 			//向服务器通信，施放的地点
 			if(this.role.longPaoXiao.exists==false){
-				socket.emit('useSkill',JSON.stringify({x:this.role.x,y:this.role.y,id:this.role.id}));
+				socket.emit('useSkill',JSON.stringify({x:this.role.position.x,y:this.role.position.y,id:this.role.id}));
 			}
 			//x,y技能施放的地点
 			util.useSkill(this,this.role.longPaoXiao,this.role.x,this.role.y);
