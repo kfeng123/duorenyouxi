@@ -128,7 +128,10 @@ util.makeGame.prototype={
 		
 		//使用技能
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
+			
+			//这里必须是body.reset不能直接是reset，不然会有飞屏bug
 			this.role.longPaoXiao.body.reset(this.role.x,this.role.y);
+			this.role.longPaoXiao.exists=true;
 			this.role.longPaoXiao.play('do',8,false,true);
 		
 		}
