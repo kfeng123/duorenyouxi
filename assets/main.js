@@ -230,9 +230,10 @@ util.otherPlayerMove=function(player){
 
 		//防止抖动现象
 			if(Math.abs(dx)<=7){
-				player.position.x=player.move.x;
+				player.body.reset(player.move.x,player.position.y);
 			}else if(Math.abs(dy)<=7){
-				player.position.y=player.move.y;
+				//player.position.y=player.move.y;
+				player.body.reset(player.position.x,player.move.y);
 			}
 		//动画
 		player.animations.stop();
