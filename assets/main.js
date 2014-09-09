@@ -131,6 +131,7 @@ util.makeGame.prototype={
 			
 			//这里必须是body.reset不能直接是reset，不然会有飞屏bug
 			this.role.longPaoXiao.body.reset(this.role.x,this.role.y);
+			this.role.longPaoXiao.position={x:this.role.x,y:this.role.y};
 			this.role.longPaoXiao.exists=true;
 			this.role.longPaoXiao.play('do',8,false,true);
 		
