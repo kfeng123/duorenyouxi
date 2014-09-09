@@ -127,7 +127,12 @@ util.makeGame.prototype={
 		}
 		
 		//使用技能
-		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
+		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+			//x,y技能施放的地点
+			util.useSkill(this,this.role.longPaoXiao,this.role.x,this.role.y);
+		}
+		
+		/* if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
 			
 			//这里必须是body.reset不能直接是reset，不然会有飞屏bug
 			this.role.longPaoXiao.body.reset(this.role.x,this.role.y);
@@ -135,7 +140,7 @@ util.makeGame.prototype={
 			this.role.longPaoXiao.exists=true;
 			this.role.longPaoXiao.play('do',8,false,true);
 		
-		}
+		} */
 		
 		//增加敌人
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.Z)){
@@ -153,8 +158,8 @@ util.makeGame.prototype={
 		
 	},
 	render:function(){
-		this.GAME.game.debug.body(this.role);
-		this.GAME.game.debug.body(this.role.longPaoXiao);
+		//this.GAME.game.debug.body(this.role);
+		//this.GAME.game.debug.body(this.role.longPaoXiao);
 		
 	}
 }
@@ -216,6 +221,14 @@ util.addEnemy=function(state_game){
 	state_game.bianfu.add(bianfu);
 }
 
+//使用技能
+//context：上下文，sprite:技能的sprite,x,y,技能施放坐标
+util.useSkill=function(context,sprite,x,y){
+	if(sprite.exists)return;
+	sprite.body.reset(x,y);
+	sprite.exists=true;
+	sprite.play('do',8,false,true);
+}
 
 //更新其他玩家的移动
 util.otherPlayerMove=function(player){
