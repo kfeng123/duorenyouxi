@@ -226,6 +226,7 @@ util.addEnemy=function(state_game){
 util.useSkill=function(context,sprite,x,y){
 	if(sprite.exists)return;
 	sprite.body.reset(x,y);
+	sprite.position={x:x,y:y};
 	sprite.exists=true;
 	sprite.play('do',8,false,true);
 }
