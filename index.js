@@ -39,6 +39,12 @@ io.on('connection', function(socket){
 	}
 	socket.broadcast.emit('move',jstring);
   });
+  
+  socket.on('useSkill',function(jstring){
+	//var P=JSON.parse(jstring);
+	socket.broadcast.emit('useSkill',jstring);
+  });
+  
 });
 
 

@@ -98,6 +98,16 @@ util.makeGame.prototype={
 				}
 			});
 		});
+		//其他玩家施放技能
+		socket.on('useSkill',function(jstring){
+			var P=JSON.parse(jstring);
+			congtext.otherPlayers.forEach(function(player){
+				if(player.id==P.id){
+					util.useSkill(context,player.longPaoXiao,P.x,P.y);
+				
+				}
+			});
+		});
 		
 	},
 	update:function(){
@@ -130,7 +140,11 @@ util.makeGame.prototype={
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
 			//x,y技能施放的地点
 			util.useSkill(this,this.role.longPaoXiao,this.role.x,this.role.y);
+			
+			//向服务器通信，施放的地点
+			socket.emit('useSkill',JSON.stringify({x:this.role.x,y:this.role.y,id:this.role.id}));
 		}
+		
 		
 		/* if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
 			
