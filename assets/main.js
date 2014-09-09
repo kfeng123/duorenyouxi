@@ -100,8 +100,8 @@ util.makeGame.prototype={
 		});
 		//其他玩家施放技能
 		socket.on('useSkill',function(jstring){
-			alert("haha");
 			var P=JSON.parse(jstring);
+			alert(P.x+' '+P.y+' '+P.id);
 			congtext.otherPlayers.forEach(function(player){
 				if(player.id==P.id){
 					util.useSkill(context,player.longPaoXiao,P.x,P.y);
