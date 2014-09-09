@@ -149,7 +149,7 @@ util.makeGame.prototype={
 		this.otherPlayers.forEach(function(player){
 			if(player.toGo!=null){
 				util.useSkill(player.toGo.context,player.toGo.sprite,player.toGo.x,player.toGo.y);
-				palyer.toGo=null;
+				player.toGo=null;
 			}
 		});
 		/* if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
