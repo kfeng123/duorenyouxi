@@ -247,6 +247,7 @@ util.useSkill=function(context,sprite,x,y){
 	sprite.body.reset(x,y);
 	sprite.position={x:x,y:y};
 	sprite.exists=true;
+	alert(sprite.position.x+ ' '+sprite.position.y);
 	sprite.play('do',8,false,true);
 }
 
