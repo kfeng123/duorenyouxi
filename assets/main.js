@@ -139,6 +139,10 @@ util.makeGame.prototype={
 		
 		//使用技能
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+			//向服务器通信，施放的地点
+			if(this.role.longPaoXiao.exists==false){
+				socket.emit('useSkill',JSON.stringify({x:this.role.x,y:this.role.y,id:this.role.id}));
+			}
 			//x,y技能施放的地点
 			util.useSkill(this,this.role.longPaoXiao,this.role.x,this.role.y);
 			
@@ -240,10 +244,6 @@ util.addEnemy=function(state_game){
 //context：上下文，sprite:技能的sprite,x,y,技能施放坐标
 util.useSkill=function(context,sprite,x,y){
 	if(sprite.exists)return;
-	//向服务器通信，施放的地点
-	socket.emit('useSkill',JSON.stringify({x:this.role.x,y:this.role.y,id:this.role.id}));
-			
-			
 	sprite.body.reset(x,y);
 	sprite.position={x:x,y:y};
 	sprite.exists=true;
