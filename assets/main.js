@@ -46,12 +46,7 @@ util.makeGame=function(GAME){
 }
 util.makeGame.prototype={
 	preload:function(){
-		
-		//读取部分放到前面的state里了
-		/* this.GAME.game.load.tilemap('tilemap','jj.json',null,Phaser.Tilemap.TILED_JSON);
-		this.GAME.game.load.image('tiles','free_tileset_version_10.png');
-		this.GAME.game.load.spritesheet('TILES','free_tileset_version_10.png',32,32);
-		this.GAME.game.load.spritesheet('sheep','sheep.png',32,48); */
+
 	},
 	create:function(){
 		//添加动画
@@ -133,7 +128,7 @@ util.makeGame.prototype={
 		
 		//使用技能
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
-			this.role.longPaoXiao.reset(this.role.x,this.role.y);
+			this.role.longPaoXiao.body.reset(this.role.x,this.role.y);
 			this.role.longPaoXiao.play('do',8,false,true);
 		
 		}
