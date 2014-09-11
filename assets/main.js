@@ -23,7 +23,7 @@ util.makeMenu.prototype={
 			this.text.setText('loading...');
 		},this);
 		this.GAME.game.load.onFileComplete.add(function(progress,cacheKey,success,totalLoaded,totalFiles){
-			this.text.setText("completes"+progress+"% - "+totalLoaded+" / "+totalFiles);
+			this.text.setText("completes "+progress+"% - "+totalLoaded+" / "+totalFiles);
 		},this);
 		this.GAME.game.load.onLoadComplete.add(function(){
 			this.text.setText("complete");
@@ -110,6 +110,7 @@ util.makeGame.prototype={
 		});
 		//有玩家离开。
 		socket.on('playerGone',function(id){
+			alert(id);
 			context.otherPlayers.forEach(function(player){
 				if(player.id==id){
 					player.toBeDestroy=true;
