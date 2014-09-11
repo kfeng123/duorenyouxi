@@ -32,8 +32,6 @@ io.on('connection', function(socket){
 	});
 	//记录新玩家信息
 	var thisPlayer=JSON.parse(jstring);
-	//新玩家在presentPlayer里的位置
-	var L=presentPlayer.length;
 	presentPlayer.push(thisPlayer);
 	
 	//向其它玩家发送新玩家信息
@@ -48,6 +46,13 @@ io.on('connection', function(socket){
 	//断线
 	socket.on('disconnect',function(){
 		socket.broadcast.emit('playerGone',jstring);
+		var k=-1;
+		for(var i=0;i<presentPlayer.length;i++){
+			if(thisPlayer.id==presentPlayer[i].id){
+					k=i;
+			}
+		}
+		presentPlayer.splice(k,1);
 		//socket.broadcast.emit('playerGone',presentPlayer[L].id);
 		//delete presentPlayer[L];
 	});
