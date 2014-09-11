@@ -182,8 +182,8 @@ util.makeGame.prototype={
 		//其他玩家是否要被destroy
 		var temp=0;
 		while(temp<this.otherPlayers.children.length){
-			if(this.otherPlayers.children[i].toBeDestroy){
-				util.killRenWu(this.otherPlayers.children[i].toBeDestroy);
+			if(this.otherPlayers.children[temp].toBeDestroy){
+				util.killRenWu(this.otherPlayers.children[temp].toBeDestroy);
 			}else{
 				temp++;
 			}
