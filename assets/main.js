@@ -183,7 +183,7 @@ util.makeGame.prototype={
 		var temp=0;
 		while(temp<this.otherPlayers.children.length){
 			if(this.otherPlayers.children[temp].toBeDestroy){
-				util.killRenWu(this.otherPlayers.children[temp].toBeDestroy);
+				util.killRenWu(this.otherPlayers.children[temp]);
 			}else{
 				temp++;
 			}
