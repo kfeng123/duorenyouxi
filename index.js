@@ -67,7 +67,7 @@ io.on('connection', function(socket){
   //断线
   socket.on('disconnect',function(){
 		socket.emit('playerGone',presentPlayer[L].id);
-		delete presentPlayer[L];
+		//delete presentPlayer[L];
   });
   
   
