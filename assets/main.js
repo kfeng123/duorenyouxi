@@ -212,7 +212,7 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	//是否要在下次update时施放技能
 	role.toGo=null;
 	//是否该被destroy
-	player.toBeDestroy=false;
+	role.toBeDestroy=false;
 	
 	//技能龙咆哮
 	role.longPaoXiao=GAME.game.add.sprite(x,y,'longpaoxiao',15);
