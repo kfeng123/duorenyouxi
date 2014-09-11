@@ -66,7 +66,8 @@ io.on('connection', function(socket){
   
   //断线
   socket.on('disconnect',function(){
-		socket.broadcast.emit('playerGone',presentPlayer[L].id);
+		var i=presentPlayer[L].id;
+		//socket.broadcast.emit('playerGone',presentPlayer[L].id);
 		//delete presentPlayer[L];
   });
   
