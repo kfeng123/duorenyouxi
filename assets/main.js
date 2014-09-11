@@ -110,7 +110,6 @@ util.makeGame.prototype={
 		});
 		//有玩家离开。
 		socket.on('playerGone',function(id){
-			alert("haha");
 			alert(id);
 			context.otherPlayers.forEach(function(player){
 				if(player.id==id){
