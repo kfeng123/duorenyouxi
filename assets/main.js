@@ -180,11 +180,19 @@ util.makeGame.prototype={
 		this.otherPlayers.forEach(util.otherPlayerMove);
 		
 		//其他玩家是否要被destroy
-		this.otherPlayers.forEach(function(player){
+		var temp=0;
+		while(temp<this.otherPlayers.children.length){
+			if(this.otherPlayers.children[i].toBeDestroy){
+				util.killRenWu(this.otherPlayers.children[i].toBeDestroy);
+			}else{
+				temp++;
+			}
+		}
+		/* this.otherPlayers.forEach(function(player){
 			if(player.toBeDestroy){
 				util.killRenWu(player);
 			}
-		});
+		}); */
 		
 		
 		var context=this;
