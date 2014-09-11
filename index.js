@@ -45,6 +45,12 @@ io.on('connection', function(socket){
 			socket.emit('shuaGuai');
 		}
 	}); */
+	//断线
+	socket.on('disconnect',function(){
+		socket.broadcast.emit('playerGone',jstring);
+		//socket.broadcast.emit('playerGone',presentPlayer[L].id);
+		//delete presentPlayer[L];
+	});
   });
   socket.on('move',function(jstring){
 	var P=JSON.parse(jstring);
@@ -64,12 +70,7 @@ io.on('connection', function(socket){
   });
   
   
-  //断线
-  socket.on('disconnect',function(){
-		socket.broadcast.emit('playerGone',thisPlayer);
-		//socket.broadcast.emit('playerGone',presentPlayer[L].id);
-		//delete presentPlayer[L];
-  });
+  
   
   
 });
