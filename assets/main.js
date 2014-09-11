@@ -109,10 +109,11 @@ util.makeGame.prototype={
 			});
 		});
 		//有玩家离开。
-		socket.on('playerGone',function(id){
-			alert(id);
+		socket.on('playerGone',function(jstring){
+			alert(jstring);
+			var P=JSON.parse(jstring);
 			context.otherPlayers.forEach(function(player){
-				if(player.id==id){
+				if(player.id==P.id){
 					player.toBeDestroy=true;
 				}
 			});
