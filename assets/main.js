@@ -108,12 +108,20 @@ util.makeGame.prototype={
 				}
 			});
 		});
+		//有玩家离开。
+		socket.on('playerGone',function(id){
+			context.otherPlayers.forEach(function(player){
+				if(player.id==id){
+					player.toBeDestroy=true;
+				}
+			});
+		});
 		
 	},
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
 		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.bianfu,function(a,b){b.kill();}, null, this);
-		this.GAME.game.physics.arcade.overlap(this.role,this.bianfu,function(a,b){a.kill();},null,this);
+		this.GAME.game.physics.arcade.overlap(this.role,this.bianfu,function(a,b){util.killRenWu(a);},null,this);
 		if(this.cursors.up.isDown){
 			this.role.body.velocity.y=-200;
 			this.role.body.velocity.x=0;
@@ -170,6 +178,12 @@ util.makeGame.prototype={
 		//其他玩家的移动
 		this.otherPlayers.forEach(util.otherPlayerMove);
 		
+		//其他玩家是否要被destroy
+		this.otherPlayers.forEach(function(player){
+			if(player.toBeDestroy){
+				util.killRenWu(player);
+			}
+		});
 		
 		
 		var context=this;
@@ -197,6 +211,8 @@ util.createPlayer=function(x,y,img,frame,id,GAME){
 	role.anchor.y=0.5;
 	//是否要在下次update时施放技能
 	role.toGo=null;
+	//是否该被destroy
+	player.toBeDestroy=false;
 	
 	//技能龙咆哮
 	role.longPaoXiao=GAME.game.add.sprite(x,y,'longpaoxiao',15);
@@ -217,6 +233,7 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 	player.move={};
 	player.move.x=x;
 	player.move.y=y;
+	
 	group.add(player);
 	
 	return(player);
@@ -252,6 +269,14 @@ util.useSkill=function(context,sprite,x,y){
 	sprite.exists=true;
 	sprite.play('do',8,false,true);
 }
+
+//销毁人物
+util.killRenWu=function(player){
+	player.longPaoXiao.destroy();
+	player.destroy();
+
+}
+
 
 //更新其他玩家的移动
 util.otherPlayerMove=function(player){
