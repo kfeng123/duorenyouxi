@@ -73,9 +73,14 @@ util.makeGame.prototype={
 		this.role.body.collideWorldBounds=true;
 		
 		//创建蝙蝠敌人group
-		util.createBianfu(this);
+		//util.createBianfu(this);
 		
+		//创建本地控制的敌人group
+		this.localEnemy=this.GAME.game.add.group();
+		this.localEnemy.enableBody=true;
+		this.localEnemy.physicsBodyType=Phaser.Physics.ARCADE;
 		
+		//摄像机
 		this.GAME.game.camera.follow(this.role);
 		this.cursors=this.GAME.game.input.keyboard.createCursorKeys();
 		
@@ -170,10 +175,10 @@ util.makeGame.prototype={
 		});
 		
 		
-		//增加敌人
+		/* //增加敌人
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.Z)){
 			util.addEnemy(this);
-		}
+		} */
 		
 		//其他玩家的移动
 		this.otherPlayers.forEach(util.otherPlayerMove);
@@ -189,7 +194,7 @@ util.makeGame.prototype={
 		}
 		//刷怪
 		if(this.toShuaGuai){
-			util.ShuaGuai(this);
+			util.ShuaGuai(this,this.localEnemy);
 			this.toShuaGuai=false;
 		}
 		
@@ -247,7 +252,7 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 }
 
 
-//创建敌人group
+/* //创建敌人group
 util.createBianfu=function(state_game){
 	state_game.bianfu=state_game.GAME.game.add.group();
 	state_game.bianfu.enableBody=true;
@@ -258,7 +263,7 @@ util.createBianfu=function(state_game){
 	for(var i=0;i<3;i++){
 		util.addEnemy(state_game);
 	} */
-}
+} */
 //增加敌人,group代表要加入的group，可能是本地操控的group也可能是服务器操控的group
 util.addEnemy=function(state_game,group){
 	var bianfu=state_game.GAME.game.add.sprite(state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY,'kulou',0);
