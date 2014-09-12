@@ -13,7 +13,7 @@ var presentPlayer=[];
 
 //目前怪物
 var presentMonster=[];
-
+var MonsterIdUsed=[];
 app.get('/', function(req, res){
   res.sendfile('index.html');
 });
@@ -43,6 +43,20 @@ io.on('connection', function(socket){
 			socket.emit('shuaGuai');
 		}
 	});  
+	//回复新怪编号请求
+	socket.on('requestMonsterId',function(jstring){
+		var P=JSON.parse(jstring);
+		var k=0;
+		for(var i=0;i<presentMonster.length;i++){
+			if(presentMonster[i].id>k){
+				k=presentMonster[i].id;
+			}
+		}
+		k++;
+		P.id=k;
+		presentMonster.push(P);
+		socket.emit('applyRequestMonsterId',P.id);
+	});
 	
 	//断线
 	socket.on('disconnect',function(){
