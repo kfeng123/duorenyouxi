@@ -189,7 +189,7 @@ util.makeGame.prototype={
 		}
 		//刷怪
 		if(this.toShuaGuai){
-			//util.ShuaGuai(this);
+			util.ShuaGuai(this);
 			this.toShuaGuai=false;
 		}
 		
@@ -253,19 +253,29 @@ util.createBianfu=function(state_game){
 	state_game.bianfu.enableBody=true;
 	state_game.bianfu.physicsBodyType=Phaser.Physics.ARCADE;
 	
-	//最多3个敌人
+	/* //最多3个敌人
 	state_game.bianfu.num=3;
 	for(var i=0;i<3;i++){
 		util.addEnemy(state_game);
-	}
+	} */
 }
-//增加敌人
-util.addEnemy=function(state_game){
+//增加敌人,group代表要加入的group，可能是本地操控的group也可能是服务器操控的group
+util.addEnemy=function(state_game,group){
 	var bianfu=state_game.GAME.game.add.sprite(state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY,'kulou',0);
 	bianfu.animations.add('move',[0,1,2,3],4,true);
 	bianfu.animations.play('move');
-	state_game.bianfu.add(bianfu);
+	group.add(bianfu);
+	return bianfu;
 }
+
+//依照服务器的命令刷怪,加入到group里
+util.ShuaGuai=function(state_game,group){
+	var bianfu=util.addEnemy(state_game,group);
+	
+	//socket.emit('doneShuaGuai',);
+}
+
+
 
 //使用技能
 //context：上下文，sprite:技能的sprite,x,y,技能施放坐标
