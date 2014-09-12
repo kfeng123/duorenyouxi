@@ -87,11 +87,13 @@ shuaGuai=setInterval(function(){
 	//地图上怪物的最大数量
 	var num=20;
 	if(presentMonster.length>=num)return;
+	//如果没有玩家，就不执行
+	if(presentPlayer.length==0)return;
 	//随机指定一名玩家刷怪
 	for(var i=0;i<(num-presentMonster.length);i++){
 		//id是随机指定的现存玩家的id
-		//var id=presentPlayer[Math.floor(Math.random()*presentPlayer.length)].id;
-		emitter.emit('shuaGuai',Math.floor(Math.random()*presentPlayer.length));
+		var id=presentPlayer[Math.floor(Math.random()*presentPlayer.length)].id;
+		emitter.emit('shuaGuai',id);
 	} 
 },5000);  
 
