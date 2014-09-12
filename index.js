@@ -38,8 +38,8 @@ io.on('connection', function(socket){
 	socket.broadcast.emit('newPlayer',jstring);
 	
 	//刷怪
-	emitter.on('shuaGuai',function(id){
-		socket.emit('shuaGuai',id);
+	emitter.on('shuaGuai',function(){
+		socket.emit('shuaGuai');
 		/* if(id==thisPlayer.id){
 			socket.emit('shuaGuai');
 		} */
@@ -90,7 +90,7 @@ shuaGuai=setTimeout(function(){
 	for(var i=0;i<(num-presentMonster.length);i++){
 		//id是随机指定的现存玩家的id
 		//var id=presentPlayer[Math.floor(Math.random()*presentPlayer.length)].id;
-		emitter.emit('shuaGuai',Math.floor(Math.random()*presentPlayer.length));
+		emitter.emit('shuaGuai');
 	} 
 },5000);  
 

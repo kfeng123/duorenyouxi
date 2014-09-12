@@ -119,8 +119,8 @@ util.makeGame.prototype={
 		});
 		
 		//刷怪
-		socket.on('shuaGuai',function(haha){
-			alert(haha);
+		socket.on('shuaGuai',function(){
+			alert('haha');
 		});
 		
 	},
