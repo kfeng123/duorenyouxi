@@ -38,8 +38,8 @@ io.on('connection', function(socket){
 	socket.broadcast.emit('newPlayer',jstring);
 	
 	//刷怪
-	emitter.on('shuaGuai',function(){
-		socket.emit('shuaGuai');
+	emitter.on('shuaGuai',function(id){
+		socket.emit('shuaGuai',id);
 		/* if(id==thisPlayer.id){
 			socket.emit('shuaGuai');
 		} */
@@ -85,15 +85,14 @@ io.on('connection', function(socket){
 //定时刷怪
 shuaGuai=setInterval(function(){
 	//地图上怪物的最大数量
-	emitter.emit('shuaGuai');
-	/* var num=20;
+	var num=20;
 	if(presentMonster.length>=num)return;
 	//随机指定一名玩家刷怪
 	for(var i=0;i<(num-presentMonster.length);i++){
 		//id是随机指定的现存玩家的id
 		//var id=presentPlayer[Math.floor(Math.random()*presentPlayer.length)].id;
-		emitter.emit('shuaGuai');
-	}  */
+		emitter.emit('shuaGuai',Math.floor(Math.random()*presentPlayer.length));
+	} 
 },5000);  
 
 
