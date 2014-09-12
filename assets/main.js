@@ -118,6 +118,11 @@ util.makeGame.prototype={
 			});
 		});
 		
+		//刷怪
+		socket.on('shuaGuai',function(haha){
+			alert(haha);
+		});
+		
 	},
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
