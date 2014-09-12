@@ -252,17 +252,11 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 }
 
 
-/* //创建敌人group
-util.createBianfu=function(state_game){
+//创建敌人group
+/* util.createBianfu=function(state_game){
 	state_game.bianfu=state_game.GAME.game.add.group();
 	state_game.bianfu.enableBody=true;
 	state_game.bianfu.physicsBodyType=Phaser.Physics.ARCADE;
-	
-	/* //最多3个敌人
-	state_game.bianfu.num=3;
-	for(var i=0;i<3;i++){
-		util.addEnemy(state_game);
-	} */
 } */
 //增加敌人,group代表要加入的group，可能是本地操控的group也可能是服务器操控的group
 util.addEnemy=function(state_game,group){
