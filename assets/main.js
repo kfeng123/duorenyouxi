@@ -275,6 +275,7 @@ util.ShuaGuai=function(state_game,group){
 	socket.emit('requestMonsterId',JSON.stringify(toSent));
 	//服务器发来ID，给怪物配上
 	socket.on('applyRequestMonsterId',function(id){
+		alert('haha');
 		bianfu.id=id;
 	});
 }
