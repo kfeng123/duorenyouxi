@@ -83,7 +83,7 @@ io.on('connection', function(socket){
 });
 
 //定时刷怪
-shuaGuai=setTimeout(function(){
+shuaGuai=setInterval(function(){
 	//地图上怪物的最大数量
 	emitter.emit('shuaGuai');
 	/* var num=20;
