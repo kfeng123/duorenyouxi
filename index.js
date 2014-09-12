@@ -38,11 +38,11 @@ io.on('connection', function(socket){
 	socket.broadcast.emit('newPlayer',jstring);
 	
 	//刷怪
-	/* emitter.on('shuaGuai',function(id){
+	emitter.on('shuaGuai',function(id){
 		if(id==thisPlayer.id){
 			socket.emit('shuaGuai');
 		}
-	}); */
+	}); 
 	//断线
 	socket.on('disconnect',function(){
 		socket.broadcast.emit('playerGone',jstring);
@@ -81,7 +81,7 @@ io.on('connection', function(socket){
 });
 
 //定时刷怪
-/* shuaGuai=setTimeout(function(){
+shuaGuai=setTimeout(function(){
 	//地图上怪物的最大数量
 	var num=20;
 	if(presentMonster.length>=num)return;
@@ -91,7 +91,7 @@ io.on('connection', function(socket){
 		var id=presentPlayer[Math.floor(Math.random()*presentPlayer.length)].id;
 		emitter.emit('shuaGuai',id);
 	}
-},5000); */
+},5000); 
 
 
 
