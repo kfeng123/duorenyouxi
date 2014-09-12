@@ -88,8 +88,8 @@ shuaGuai=setTimeout(function(){
 	//随机指定一名玩家刷怪
 	for(var i=0;i<(num-presentMonster.length);i++){
 		//id是随机指定的现存玩家的id
-		/* var id=presentPlayer[Math.floor(Math.random()*presentPlayer.length)].id;
-		emitter.emit('shuaGuai',id); */
+		var id=presentPlayer[Math.floor(Math.random()*presentPlayer.length)].id;
+		//emitter.emit('shuaGuai',id);
 	} 
 },5000);  
 
