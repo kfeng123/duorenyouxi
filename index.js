@@ -94,6 +94,8 @@ shuaGuai=setTimeout(function(){
 	} 
 },5000);  
 
+emitter.emit('shuaGuai');
+
 
 
 http.listen(process.env.PORT||3000, function(){
