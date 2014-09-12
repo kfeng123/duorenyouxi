@@ -44,6 +44,9 @@ io.on('connection', function(socket){
 			socket.emit('shuaGuai');
 		} */
 	});  
+	
+	emitter.emit('shuaGuai');
+	
 	//断线
 	socket.on('disconnect',function(){
 		socket.broadcast.emit('playerGone',jstring);
@@ -94,7 +97,6 @@ shuaGuai=setTimeout(function(){
 	} 
 },5000);  
 
-emitter.emit('shuaGuai');
 
 
 
