@@ -39,10 +39,9 @@ io.on('connection', function(socket){
 	
 	//刷怪
 	emitter.on('shuaGuai',function(id){
-		socket.emit('shuaGuai',id);
-		/* if(id==thisPlayer.id){
+		if(id==thisPlayer.id){
 			socket.emit('shuaGuai');
-		} */
+		}
 	});  
 	
 	//断线

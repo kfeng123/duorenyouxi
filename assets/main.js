@@ -43,6 +43,8 @@ util.makeMenu.prototype={
 
 util.makeGame=function(GAME){
 	this.GAME=GAME;
+	//标记是否要刷怪
+	this.toShuaGuai=false;
 }
 util.makeGame.prototype={
 	preload:function(){
@@ -120,7 +122,7 @@ util.makeGame.prototype={
 		
 		//刷怪
 		socket.on('shuaGuai',function(id){
-			alert(id);
+			context.toShuaGuai=true;
 		});
 		
 	},
@@ -166,15 +168,7 @@ util.makeGame.prototype={
 				player.toGo=null;
 			}
 		});
-		/* if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)&&this.role.longPaoXiao.exists==false){
-			
-			//这里必须是body.reset不能直接是reset，不然会有飞屏bug
-			this.role.longPaoXiao.body.reset(this.role.x,this.role.y);
-			this.role.longPaoXiao.position={x:this.role.x,y:this.role.y};
-			this.role.longPaoXiao.exists=true;
-			this.role.longPaoXiao.play('do',8,false,true);
 		
-		} */
 		
 		//增加敌人
 		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.Z)){
@@ -193,12 +187,11 @@ util.makeGame.prototype={
 				temp++;
 			}
 		}
-		/* this.otherPlayers.forEach(function(player){
-			if(player.toBeDestroy){
-				util.killRenWu(player);
-			}
-		}); */
-		
+		//刷怪
+		if(this.toShuaGuai){
+			//util.ShuaGuai(this);
+			this.toShuaGuai=false;
+		}
 		
 		var context=this;
 		//socket通信
