@@ -154,7 +154,7 @@ util.makeGame.prototype={
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
 		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.bianfu,function(a,b){
-			
+			alert('haha');
 			//告诉服务器怪物b被杀死
 			socket.emit('destroyEnemy',b.id);
 			
