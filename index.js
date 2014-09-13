@@ -109,7 +109,9 @@ io.on('connection', function(socket){
 	socket.emit('updateMonster');
 	//socket.emit('updateMonster',JSON.stringify(presentMonster));
   });
-  
+  setTimeout(function(){
+	socket.emit('updateMonster');
+  },5000);
   
 });
 
