@@ -71,7 +71,14 @@ io.on('connection', function(socket){
 		//socket.broadcast.emit('playerGone',presentPlayer[L].id);
 		//delete presentPlayer[L];
 	});
+	
+	
   });
+  
+  
+  
+  
+  
   socket.on('move',function(jstring){
 	var P=JSON.parse(jstring);
 	//更新玩家状态
@@ -89,13 +96,20 @@ io.on('connection', function(socket){
 	socket.broadcast.emit('useSkill',jstring);
   });
   
-  
+  socket.on('destroyEnemy',function(id){
+	for(var i=0;i<presentMonster.length;i++){
+		if(id==presentMonster[i].id){
+			presentMonster.splice(i,1);
+			socket.broadcast.emit('destroyEnemy',id);
+		}
+	}
+  });
   
   
   
 });
 
-//定时刷怪
+//定时刷怪,更新玩家的怪物信息
 shuaGuai=setInterval(function(){
 	//地图上怪物的最大数量
 	var num=20;

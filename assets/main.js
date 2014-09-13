@@ -133,7 +133,13 @@ util.makeGame.prototype={
 	},
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
-		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.bianfu,function(a,b){b.kill();}, null, this);
+		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.bianfu,function(a,b){
+			
+			//告诉服务器怪物b被杀死
+			socket.emit('destroyEnemy',b.id);
+			
+			b.destroy();
+		}, null, this);
 		this.GAME.game.physics.arcade.overlap(this.role,this.localEnemy,function(a,b){util.killRenWu(a);},null,this);
 		if(this.cursors.up.isDown){
 			this.role.body.velocity.y=-200;
