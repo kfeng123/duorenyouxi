@@ -158,14 +158,14 @@ util.makeGame.prototype={
 		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.localEnemy,function(a,b){
 			b.destroy();
 			//告诉服务器怪物b被杀死
-			socket.emit('destroyEnemy',b.id);
+			//socket.emit('destroyEnemy',b.id);
 			
 			
 		}, null, this);
 		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.serverEnemy,function(a,b){
 			b.destroy();
 			//告诉服务器怪物b被杀死
-			socket.emit('destroyEnemy',b.id);
+			//socket.emit('destroyEnemy',b.id);
 			
 			
 		});
