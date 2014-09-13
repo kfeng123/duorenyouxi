@@ -153,13 +153,19 @@ util.makeGame.prototype={
 	},
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
-		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.bianfu,function(a,b){
-			alert('haha');
+		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.localEnemy,function(a,b){
 			//告诉服务器怪物b被杀死
 			socket.emit('destroyEnemy',b.id);
 			
 			b.destroy();
 		}, null, this);
+		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.serverEnemy,function(a,b){
+			//告诉服务器怪物b被杀死
+			socket.emit('destroyEnemy',b.id);
+			
+			b.destroy();
+		});
+		
 		this.GAME.game.physics.arcade.overlap(this.role,this.localEnemy,function(a,b){util.killRenWu(a);},null,this);
 		if(this.cursors.up.isDown){
 			this.role.body.velocity.y=-200;
@@ -226,8 +232,8 @@ util.makeGame.prototype={
 		
 		
 		//从服务器获取怪物数据，添加或者修改怪物各种属性
-		for(var i=0;i<this.EnemyDataFromServer;i++){
-			util.handleEnemyDataFromServer(this.serverEnemy,this);
+		for(var i=0;i<this.EnemyDataFromServer.length;i++){
+			util.handleEnemyDataFromServer(this.EnemyDataFromServer[i],this);
 		}
 		
 		
@@ -317,7 +323,6 @@ util.ShuaGuai=function(state_game,group){
 
 //从服务器获取怪物数据，添加怪物或者修改怪物各种属性
 util.handleEnemyDataFromServer=function(enemy,context){
-	alert('haha');
 	var flag=false;
 	context.localEnemy.forEach(function(P){
 		//不处理local的怪物
@@ -333,6 +338,7 @@ util.handleEnemyDataFromServer=function(enemy,context){
 		}
 	});
 	if(!flag){
+		alert('haha');
 		//添加怪物
 		uti.addEnemy(context,context.serverEnemy);
 	}
