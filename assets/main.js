@@ -244,6 +244,7 @@ util.makeGame.prototype={
 		//依照服务器的命令删除怪物
 		for(var i=0;i<this.localEnemy.length;i++){
 			var k=this.monsterToBeKilled.indexOf(this.localEnemy[i]);
+			alert(k);
 			if(k!=-1){
 				alert('haha');
 				this.monsterToBeKilled.splice(k,1);
@@ -253,6 +254,7 @@ util.makeGame.prototype={
 		}
 		for(var i=9;i<this.serverEnemy.length;i++){
 			var k=this.monsterToBeKilled.indexOf(this.serverEnemy[i]);
+			alert(k);
 			if(k!=-1){
 				alert('haha');
 				this.monsterToBeKilled.splice(k,1);
