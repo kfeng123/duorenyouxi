@@ -146,8 +146,7 @@ util.makeGame.prototype={
 		this.EnemyDataFromServer=[];
 		//从服务器获取怪物数据
 		socket.on('updateMonster',function(jstring){
-			alert(jstring);
-			//this.EnemyDataFromServer=JSON.parse(jstring);
+			this.EnemyDataFromServer=JSON.parse(jstring);
 			
 		});
 		
