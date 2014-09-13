@@ -274,7 +274,7 @@ util.ShuaGuai=function(state_game,group){
 	//请服务器给怪物分配一个ID
 	socket.emit('requestMonsterId',JSON.stringify(toSent));
 	//服务器发来ID，给怪物配上
-	socket.on('applyRequestMonsterId',function(id){
+	socket.once('applyRequestMonsterId',function(id){
 		bianfu.id=id;
 	});
 }
