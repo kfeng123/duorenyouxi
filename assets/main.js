@@ -156,16 +156,18 @@ util.makeGame.prototype={
 	update:function(){
 		this.GAME.game.physics.arcade.collide(this.role,this.layer2);
 		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.localEnemy,function(a,b){
+			b.destroy();
 			//告诉服务器怪物b被杀死
 			socket.emit('destroyEnemy',b.id);
 			
-			b.destroy();
+			
 		}, null, this);
 		this.GAME.game.physics.arcade.overlap(this.role.longPaoXiao,this.serverEnemy,function(a,b){
+			b.destroy();
 			//告诉服务器怪物b被杀死
 			socket.emit('destroyEnemy',b.id);
 			
-			b.destroy();
+			
 		});
 		
 		this.GAME.game.physics.arcade.overlap(this.role,this.localEnemy,function(a,b){util.killRenWu(a);},null,this);
