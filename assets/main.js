@@ -340,7 +340,8 @@ util.handleEnemyDataFromServer=function(enemy,context){
 	if(!flag){
 		
 		//添加怪物
-		util.addEnemy(context,context.serverEnemy);
+		HH=util.addEnemy(context,context.serverEnemy);
+		HH.id=enemy.id;
 	}
 };
 
