@@ -245,6 +245,7 @@ util.makeGame.prototype={
 		for(var i=0;i<this.localEnemy.length;i++){
 			var k=this.monsterToBeKilled.indexOf(this.localEnemy[i]);
 			if(k!=-1){
+				alert('haha');
 				this.monsterToBeKilled.splice(k,1);
 				this.localEnemy[i].destroy();
 				break;
@@ -253,6 +254,7 @@ util.makeGame.prototype={
 		for(var i=9;i<this.serverEnemy.length;i++){
 			var k=this.monsterToBeKilled.indexOf(this.serverEnemy[i]);
 			if(k!=-1){
+				alert('haha');
 				this.monsterToBeKilled.splice(k,1);
 				this.serverEnemy[i].destroy();
 				break;
