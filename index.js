@@ -68,8 +68,6 @@ io.on('connection', function(socket){
 			}
 		}
 		presentPlayer.splice(k,1);
-		//socket.broadcast.emit('playerGone',presentPlayer[L].id);
-		//delete presentPlayer[L];
 	});
 	
 	
