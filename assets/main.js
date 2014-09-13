@@ -293,16 +293,11 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 	return(player);
 }
 
-
-//创建敌人group
-/* util.createBianfu=function(state_game){
-	state_game.bianfu=state_game.GAME.game.add.group();
-	state_game.bianfu.enableBody=true;
-	state_game.bianfu.physicsBodyType=Phaser.Physics.ARCADE;
-} */
 //增加敌人,group代表要加入的group，可能是本地操控的group也可能是服务器操控的group
-util.addEnemy=function(state_game,group){
-	var bianfu=state_game.GAME.game.add.sprite(state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY,'kulou',0);
+util.addEnemy=function(state_game,group,x,y){
+	//var bianfu=state_game.GAME.game.add.sprite(state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY,'kulou',0);
+	var bianfu=state_game.GAME.game.add.sprite(x,y,'kulou',0);
+	
 	bianfu.animations.add('move',[0,1,2,3],4,true);
 	bianfu.animations.play('move');
 	group.add(bianfu);
@@ -311,7 +306,7 @@ util.addEnemy=function(state_game,group){
 
 //依照服务器的命令刷怪,加入到group里
 util.ShuaGuai=function(state_game,group){
-	var bianfu=util.addEnemy(state_game,group);
+	var bianfu=util.addEnemy(state_game,group,state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY);
 	var toSent={x:bianfu.position.x,y:bianfu.position.y};
 	//请服务器给怪物分配一个ID
 	socket.emit('requestMonsterId',JSON.stringify(toSent));
@@ -340,7 +335,7 @@ util.handleEnemyDataFromServer=function(enemy,context){
 	if(!flag){
 		
 		//添加怪物
-		HH=util.addEnemy(context,context.serverEnemy);
+		HH=util.addEnemy(context,context.serverEnemy,enemy.x,enemy.y);
 		HH.id=enemy.id;
 	}
 };
