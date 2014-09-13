@@ -137,9 +137,11 @@ util.makeGame.prototype={
 			context.toShuaGuai=true;
 		});
 		
-		//服务器通知删除怪物
+		//要杀的怪物
+		this.monsterToBeKilled=[];
+		//服务器通知要杀的怪物
 		socket.on('destroyEnemy',function(id){
-			
+			context.monsterToBeKilled.push(id);
 		});
 		
 		//从服务器获得的怪物数据
@@ -236,7 +238,23 @@ util.makeGame.prototype={
 			util.handleEnemyDataFromServer(this.EnemyDataFromServer[i],this);
 		}
 		
-		
+		//依照服务器的命令删除怪物
+		for(var i=0;i<this.localEnemy.length;i++){
+			var k=this.monsterToBeKilled.indexOf(this.localEnemy[i]);
+			if(k!=-1){
+				this.monsterToBeKilled.splice(k,1);
+				this.localEnemy[i].destroy();
+				break;
+			}
+		}
+		for(var i=9;i<this.serverEnemy.length;i++){
+			var k=this.monsterToBeKilled.indexOf(this.serverEnemy[i]);
+			if(k!=0){
+				this.monsterToBeKilled.splice(k,1);
+				this.serverEnemy[i].destroy();
+				break;
+			}
+		}
 		
 		
 		
