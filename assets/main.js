@@ -134,6 +134,7 @@ util.makeGame.prototype={
 		
 		//刷怪
 		socket.on('shuaGuai',function(id){
+			alert('刷怪');
 			context.toShuaGuai=true;
 		});
 		
@@ -147,6 +148,8 @@ util.makeGame.prototype={
 		//从服务器获取怪物数据
 		socket.on('updateMonster',function(jstring){
 			this.EnemyDataFromServer=JSON.parse(jstring);
+			alert('服务器更新怪物');
+			
 		});
 		
 	},
