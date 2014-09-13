@@ -80,6 +80,13 @@ util.makeGame.prototype={
 		this.localEnemy.enableBody=true;
 		this.localEnemy.physicsBodyType=Phaser.Physics.ARCADE;
 		
+		//创建服务器控制的敌人group
+		this.serverEnemy=this.GAME.game.add.group();
+		this.serverEnemy.enableBody=true;
+		this.serverEnemy.physicsBodyType=Phaser.Physics.ARCADE;
+		
+		
+		
 		//摄像机
 		this.GAME.game.camera.follow(this.role);
 		this.cursors=this.GAME.game.input.keyboard.createCursorKeys();
@@ -128,6 +135,18 @@ util.makeGame.prototype={
 		//刷怪
 		socket.on('shuaGuai',function(id){
 			context.toShuaGuai=true;
+		});
+		
+		//服务器通知删除怪物
+		socket.on('destroyEnemy',function(id){
+			
+		});
+		
+		//从服务器获得的怪物数据
+		this.EnemyDataFromServer=[];
+		//从服务器获取怪物数据
+		socket.on('updateMonster',function(jstring){
+			this.EnemyDataFromServer=JSON.parse(jstring);
 		});
 		
 	},
@@ -203,6 +222,16 @@ util.makeGame.prototype={
 			util.ShuaGuai(this,this.localEnemy);
 			this.toShuaGuai=false;
 		}
+		
+		
+		//从服务器获取怪物数据，添加或者修改怪物各种属性
+		for(var i=0;i<this.EnemyDataFromServer;i++){
+			util.handleEnemyDataFromServer(this.serverEnemy,this);
+		}
+		
+		
+		
+		
 		
 		var context=this;
 		//socket通信
@@ -284,6 +313,25 @@ util.ShuaGuai=function(state_game,group){
 		bianfu.id=id;
 	});
 }
+
+//从服务器获取怪物数据，添加怪物或者修改怪物各种属性
+util.handleEnemyDataFromServer=function(enemy,context){
+	var flag=false;
+	context.serverEnemy.forEach(function(P){
+		if(P.id==enemy.id){
+			//更新怪物属性，待写
+			
+			flag=true;
+		}
+	});
+	if(!flag){
+		//添加怪物
+		uti.addEnemy(context,context.serverEnemy);
+	}
+};
+
+
+
 
 
 
