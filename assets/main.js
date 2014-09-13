@@ -317,7 +317,14 @@ util.ShuaGuai=function(state_game,group){
 
 //从服务器获取怪物数据，添加怪物或者修改怪物各种属性
 util.handleEnemyDataFromServer=function(enemy,context){
+	alert('haha');
 	var flag=false;
+	context.localEnemy.forEach(function(P){
+		//不处理local的怪物
+		if(P.id==enemy.id){
+			flag=true;
+		}
+	});
 	context.serverEnemy.forEach(function(P){
 		if(P.id==enemy.id){
 			//更新怪物属性，待写
@@ -327,7 +334,6 @@ util.handleEnemyDataFromServer=function(enemy,context){
 	});
 	if(!flag){
 		//添加怪物
-		alert('添加');
 		uti.addEnemy(context,context.serverEnemy);
 	}
 };
