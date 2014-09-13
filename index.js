@@ -106,8 +106,7 @@ io.on('connection', function(socket){
   
   //定时更新玩家的怪物信息
   emitter.on('updateMonster',function(){
-	socket.emit('updateMonster');
-	//socket.emit('updateMonster',JSON.stringify(presentMonster));
+	socket.emit('updateMonster',JSON.stringify(presentMonster));
   });
   
 });
