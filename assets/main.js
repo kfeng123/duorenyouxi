@@ -249,7 +249,7 @@ util.makeGame.prototype={
 		}
 		for(var i=9;i<this.serverEnemy.length;i++){
 			var k=this.monsterToBeKilled.indexOf(this.serverEnemy[i]);
-			if(k!=0){
+			if(k!=-1){
 				this.monsterToBeKilled.splice(k,1);
 				this.serverEnemy[i].destroy();
 				break;
