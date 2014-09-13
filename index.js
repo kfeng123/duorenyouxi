@@ -130,7 +130,7 @@ shuaGuai=setInterval(function(){
 },5000);  
 
 //定时更新玩家的怪物信息
-setInterval(function(){
+updateMonster=setInterval(function(){
 	emitter.emit('updateMonster');
 },1000);
 
