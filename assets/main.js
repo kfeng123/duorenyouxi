@@ -241,22 +241,26 @@ util.makeGame.prototype={
 			util.handleEnemyDataFromServer(this.EnemyDataFromServer[i],this);
 		}
 		
+		
+		//上下文
+		var context=this;
+		
+		
 		//依照服务器的命令删除怪物
 		for(var i=0;i<this.monsterToBeKilled.length;i++){
 			var flag=false;
 			this.localEnemy.forEach(function(P){
-				alert(P.id);
-				if(P.id==this.monsterToBeKilled[i]){
+				if(P.id==context.monsterToBeKilled[i]){
 					flag=true;
-					this.monsterToBeKilled.splice(i,1);
+					context.monsterToBeKilled.splice(i,1);
 					P.destroy();
 				}
 			});
 			if(flag)break;
 			this.serverEnemy.forEach(function(P){
-				if(P.id==this.monsterToBeKilled[i]){
+				if(P.id==context.monsterToBeKilled[i]){
 					flag=true;
-					this.monsterToBeKilled.splice(i,1);
+					context.monsterToBeKilled.splice(i,1);
 					P.destroy();
 				}
 			});
@@ -283,7 +287,7 @@ util.makeGame.prototype={
 		
 		
 		
-		var context=this;
+		
 		//socket通信
 		socket.emit('move',JSON.stringify({x:this.role.position.x,y:this.role.position.y,id:this.role.id}));
 		
