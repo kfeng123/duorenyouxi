@@ -242,6 +242,27 @@ util.makeGame.prototype={
 		}
 		
 		//依照服务器的命令删除怪物
+		for(var i=0;i<this.monsterToBeKilled.length;i++){
+			var flag=false;
+			this.localEnemy.forEach(function(P){
+				if(P.id==this.monsterToBeKilled[i]){
+					flag=true;
+					this.monsterToBeKilled.splice(i,1);
+					P.destroy();
+				}
+			});
+			if(flag)break;
+			this.serverEnemy.forEach(function(P){
+				if(P.id==this.monsterToBeKilled[i]){
+					flag=true;
+					this.monsterToBeKilled.splice(i,1);
+					P.destroy();
+				}
+			});
+			if(flag)break;
+		}
+
+		
 		/* for(var i=0;i<this.localEnemy.children.length;i++){
 			var k=this.monsterToBeKilled.indexOf(this.localEnemy.children[i].id);
 			if(k!=-1){
