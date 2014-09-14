@@ -250,7 +250,6 @@ util.makeGame.prototype={
 		for(var i=0;i<this.monsterToBeKilled.length;i++){
 			var flag=false;
 			this.localEnemy.forEach(function(P){
-				alert('local'+P.id);
 				if(P.id==context.monsterToBeKilled[i]){
 					flag=true;
 					context.monsterToBeKilled.splice(i,1);
@@ -259,7 +258,6 @@ util.makeGame.prototype={
 			});
 			if(flag)break;
 			this.serverEnemy.forEach(function(P){
-				alert('server'+P.id);
 				if(P.id==context.monsterToBeKilled[i]){
 					flag=true;
 					context.monsterToBeKilled.splice(i,1);
