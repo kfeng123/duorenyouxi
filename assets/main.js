@@ -250,6 +250,7 @@ util.makeGame.prototype={
 		for(var i=0;i<this.monsterToBeKilled.length;i++){
 			var flag=false;
 			this.localEnemy.forEach(function(P){
+				alert(P.id);
 				if(P.id==context.monsterToBeKilled[i]){
 					flag=true;
 					context.monsterToBeKilled.splice(i,1);
