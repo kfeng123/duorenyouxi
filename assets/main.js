@@ -341,7 +341,7 @@ util.addEnemy=function(state_game,group,x,y){
 	//var bianfu=state_game.GAME.game.add.sprite(state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY,'kulou',0);
 	var bianfu=state_game.GAME.game.add.sprite(x,y,'kulou',0);
 	bianfu.anchor={x:0.5,y:0.5};
-	this.game.physics.arcade.enable(bianfu);
+	state_game.game.physics.arcade.enable(bianfu);
 	bianfu.body.setSize(16,32);
 	bianfu.animations.add('move',[0,1,2,3],4,true);
 	bianfu.animations.play('move');
