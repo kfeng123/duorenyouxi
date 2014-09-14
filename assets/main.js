@@ -245,7 +245,7 @@ util.makeGame.prototype={
 		for(var i=0;i<this.monsterToBeKilled.length;i++){
 			var flag=false;
 			this.localEnemy.forEach(function(P){
-				alert(P.id+' '+this.monsterToBeKilled[i]);
+				alert(P.id);
 				if(P.id==this.monsterToBeKilled[i]){
 					flag=true;
 					this.monsterToBeKilled.splice(i,1);
