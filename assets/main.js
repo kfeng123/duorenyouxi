@@ -210,13 +210,7 @@ util.makeGame.prototype={
 				player.toGo=null;
 			}
 		});
-		
-		
-		/* //增加敌人
-		if(this.GAME.game.input.keyboard.isDown(Phaser.Keyboard.Z)){
-			util.addEnemy(this);
-		} */
-		
+
 		//其他玩家的移动
 		this.otherPlayers.forEach(util.otherPlayerMove);
 		
@@ -346,7 +340,8 @@ util.addNewPlayer=function(x,y,img,frame,id,GAME,group){
 util.addEnemy=function(state_game,group,x,y){
 	//var bianfu=state_game.GAME.game.add.sprite(state_game.GAME.game.world.randomX,state_game.GAME.game.world.randomY,'kulou',0);
 	var bianfu=state_game.GAME.game.add.sprite(x,y,'kulou',0);
-	
+	bianfu.anchor={x:0.5,y:0.5};
+	bianfu.body.setSize(16,32);
 	bianfu.animations.add('move',[0,1,2,3],4,true);
 	bianfu.animations.play('move');
 	group.add(bianfu);
